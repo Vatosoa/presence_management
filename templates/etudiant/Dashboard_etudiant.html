@@ -1,0 +1,12 @@
+{% extends 'etudiant/base_profil_etudiant.html' %}
+{% load static %}
+{% block student_image %}
+     <img src="{{ student.image_etudiant.url }}" alt="profileImg">
+{% endblock %}
+{% block space %} - Tableau de Bord</span>{% endblock %}
+
+{% block content %}
+
+    <p>Tableau de bord etudiant</p>
+
+{% endblock %}

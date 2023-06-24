@@ -1,0 +1,15 @@
+{% extends 'enseignant/base_profil_enseignant.html' %}
+{% load static %}
+{% block content %}
+    <h1>Liste des étudiants présents lors du module {{ module.name }}</h1>
+    <table>
+        <tr>
+            <th>Nom de l'étudiant</th>
+        </tr>
+        {% for presence in presence %}
+        <tr>
+            <td>{{ presence.etudiant.nom }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

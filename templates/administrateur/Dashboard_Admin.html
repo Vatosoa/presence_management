@@ -1,0 +1,56 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+{% block space %} Tableau de Bord{% endblock %}
+
+
+
+
+{% block content %}
+
+<head>
+  <!-- Autres balises de tête -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<p>Bienvenue sur le tableau de bord Admin</p>
+
+<!-- Dashboard_Admin.html -->
+
+<div>
+  <canvas id="histogramChart"></canvas>
+</div>
+
+
+<script>
+  // Récupérez les données pour le graphique depuis votre backend
+  var data = {
+    labels: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'],
+    datasets: [{
+      label: 'Ventes mensuelles',
+      data: [120, 300, 200, 150, 400, 250],
+      backgroundColor: 'rgba(75, 192, 192, 0.6)' // Couleur de remplissage de l'histogramme
+    }]
+  };
+
+  // Configurez les options du graphique
+  var options = {
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  };
+
+  // Récupérez l'élément canvas et créez le graphique
+  var ctx = document.getElementById('histogramChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+  });
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+{% block title %}Welcome{% endblock %}
+
+{% block header %}
+    <header class="header">
+     <a href="{% url 'home' %}" class="logo"><h2><img src="{% static 'image/vr.png' %}" alt="logo"></h2></a>
+     <nav class="navbar">
+        <a href="#" style="--i:1;" class="active">Acceuil</a>
+        <a href="https://www.alger-city.com/education/universites/universite-benyoucef-benkhedda" style="--i:2;">Universite_Alger1</a>
+        <a href="https://www.univ-alger.dz/?lang=fr" style="--i:3;">A propos </a>
+        <a href="#" style="--i:4;">Conctact</a>
+     </nav>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <section class="home">
+        <div class="home-content">
+            <h3>Bienvenue sur la platforme de vérification de présence </h3>
+            <h2>Veuillez choisir <span> Votre STATUT</span></h2><br>
+
+            <div class=" social-media">
+
+            </div>
+            <a href="{% url 'connexion_admin' %}" class="btn">Administrateur</a><br><br>
+            <a href="{% url 'connexion_enseignant' %}" class="btn">Enseignant</a><br><br>
+            <a href="{% url 'connexion_etudiant' %}" class="btn">Etudiant</a>
+        </div>       
+        <div class="home-img">
+            <img src="{% static 'image/hassan.jpg' %}" alt="">
+        </div>
+    </section>
+{% endblock %}
+
+{% block footer %}
+    <div id="copyright">
+        <p> Copyright&copy; 2023 algers.Tous droits réservés.</p>
+    </div>
+{% endblock %}

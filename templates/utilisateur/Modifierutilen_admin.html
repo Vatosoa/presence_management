@@ -1,0 +1,31 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+{% block space %} - Gestions des Utilisateurs {% endblock %}
+{% block content %}
+  <h2>Modifier Utilisateur</h2>
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="nom_enseignant">Nom:</label>
+    <input type="text" name="nom_enseignant" value="{{ utilisateur.nom_enseignant }}">
+    
+    <label for="prenom_enseignant">Prenom:</label>
+    <input type="text" name="prenom_enseignant" value="{{ utilisateur.prenom_enseignant }}">
+    
+    <label for="location_enseignant">Location:</label>
+    <input type="text" name="location_enseignant" value="{{ utilisateur.location_enseignant }}">
+    
+    <label for="image_enseignant">Image:</label>
+    <input type="file" name="image_enseignant" value="{{ utilisateur.image_enseignant }}">
+
+    <label for="nom_module">Module:</label>
+    <select name="nom_module">
+      {% for module in modules %}
+        <option id="nom_module" value="{{ module.id_module }}" {% if module.id_module == utilisateur.module.id_module %}selected{% endif %}>{{ module.nom_module }}</option>
+      {% endfor %}
+    </select>
+
+
+    <br>
+    <input type="submit" value="Enregistrer">
+  </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+{% block space %} - Gestion des salles {% endblock %}
+{% block content %}    
+      <h2>Supprimer salle: {{salle.nom_salle}}</h2>
+      <p>Etes-vous sûr de vouloir supprimer l'utilisateur {{utilisateur.user.username}}</p>
+      <form action="{% url 'supprimer_salle' salle.id_salle %}" method="POST">
+        {% csrf_token %}
+      <button type="submit">Supprimer</button>
+      </form>
+{% endblock %}

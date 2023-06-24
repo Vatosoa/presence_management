@@ -1,0 +1,16 @@
+{% extends 'etudiant/base_profil_etudiant.html' %}
+{% load static %}
+{% block student_image %}
+     <img src="{{ student.image_etudiant.url }}" alt="profileImg">
+{% endblock %}
+{% block space %} - Supprimer le Profil : {{student.user.username}}{% endblock %}
+{% block content %}
+      <p>Etes-vous sûr de vouloir supprimer votre profil {{student.user.username}}</p>
+     <form action="{% url 'supprimer_profile_etudiant' user.id %}" method="POST">
+      {% csrf_token %}
+      <button type="submit">Supprimer</button>
+
+     </form>
+      
+
+{% endblock %}

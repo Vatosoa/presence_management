@@ -1,0 +1,47 @@
+{% extends 'etudiant/base_profil_etudiant.html' %}
+{% load static %}
+{% block space %} - Vérification de Présence</span>{% endblock %}
+{% block student_image %}
+     <img src="{{ student.image_etudiant.url }}" alt="profileImg">
+{% endblock %}
+{% block content %}
+
+<h1>Liste des présences - {{ module.nom_module }}</h1>
+
+<ul>
+  {% for presence in presences %}
+    <li>
+      Date de présence : {{ presence.date_de_presence }}
+      <br><p>{{presence.salle.nom_salle}}</p>
+      <br><p>{{presence.section.nom_section}}</p>
+      <br><p>{{presence.examen.nom_examen}}</p>
+      <br>
+      {% if presence.marque_presence %}
+        <span style="color: green;">Présent(e)</span>
+      {% else %}
+        <span style="color: red;">Absent(e)</span>
+      {% endif %}
+    </li>
+  {% empty %}
+    <li>Aucune présence enregistrée.</li>
+  {% endfor %}
+</ul>
+
+<h2>Liste des étudiants présents dans le module "{{ module.nom_module }}"</h2>
+
+<ul>
+  {% for presence in presences %}
+    {% if presence.marque_presence %}
+      <li>
+        Étudiant : {{ presence.examen.etudiant.user.username }}
+        <br><p>Section : {{ presence.section.nom_section }}</p>
+      </li>
+    {% endif %}
+  {% empty %}
+    <li>Aucun étudiant présent dans le module.</li>
+  {% endfor %}
+</ul>
+
+
+
+{% endblock %}

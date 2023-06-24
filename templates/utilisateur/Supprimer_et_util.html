@@ -1,0 +1,11 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+{% block space %} - Gestion des Utilisateurs {% endblock %}
+{% block content %}    
+      <h2>Supprimer Etudiant: {{utilisateur.user.username}}</h2>
+      <p>Etes-vous sûr de vouloir supprimer l'utilisateur {{utilisateur.user.username}}</p>
+      <form action="{% url 'supprimer_utilisateur_etudiant' utilisateur.id %}" method="POST">
+        {% csrf_token %}
+      <button type="submit">Supprimer</button>
+      </form>
+{% endblock %}

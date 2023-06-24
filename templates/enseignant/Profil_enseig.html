@@ -1,0 +1,43 @@
+{% extends 'enseignant/base_profil_enseignant.html' %}
+{% load static %}
+{% block content %}
+
+      <div class="table-responsive">
+        <table class="table tablebordered">
+          <tbody>
+            <tr>
+                <th scope="row">Nom d'utilisateur</th>
+                <td id="username" name="username">{{teacher.user.username}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Nom de l'enseignant</th>
+                <td id="nom_enseignant" name="nom_enseignant">{{teacher.nom_enseignant}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Email</th>
+                <td id="email" name="email">{{teacher.user.email}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Password</th>
+                <td id="password" name="password"><input type="password" value="{{teacher.user.password}}" readonly></td>              
+              <!-- <td id="password" name="password">{{teacher.user.password}}</td> -->
+            </tr>
+            <tr>
+              <th scope="row">Prenom</th>
+              <td id="prenom_enseignant" name="prenom_enseignant">{{teacher.prenom_enseignant}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Image</th>
+              <td id="image_enseignant" name="image_enseignant">{{teacher.image_enseignant}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Location</th>
+              <td id="location_enseignant" name="location_enseignant">{{teacher.location_enseignant}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <a class="btn btn-primary" href="{% url 'modifier_profile_enseignant' user.id %}">Modifier</a>
+      <a class="btn btn-danger" href="{% url 'supprimer_profile_enseignant' user.id %}">Supprimer</a>
+
+{% endblock %}

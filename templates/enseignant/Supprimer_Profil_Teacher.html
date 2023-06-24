@@ -1,0 +1,11 @@
+{% extends 'enseignant/base_profil_enseignant.html' %}
+{% load static %}
+{% block space %} - Supprimer le Profil : {{teacher.user.username}} {% endblock %}
+{% block content %}
+      <p>Etes-vous sûr de vouloir supprimer votre profil {{teacher.user.username}}</p>
+     <form action="{% url 'supprimer_profile_enseignant' user.id %}" method="POST">
+      {% csrf_token %}
+      <button type="submit">Supprimer</button>
+
+     </form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+{% block space %} - Supprimer le Profil : {{admin.user.username}} {% endblock %}
+{% block content %}
+    <p>Etes-vous sûr de vouloir supprimer votre profil {{admin.user.username}}</p>
+     <form action="{% url 'supprimer_profile_admin' user.id %}" method="POST">
+      {% csrf_token %}
+      <button type="submit">Supprimer</button>
+
+     </form>
+{% endblock %}

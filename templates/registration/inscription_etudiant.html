@@ -1,0 +1,46 @@
+{% extends 'registration/base_inscription.html' %}
+{% load static %}
+{% block content %}
+<div>
+            <style>
+                h5{
+                    color: red;
+                }
+            </style>
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %}
+        </div>
+<form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-box">
+            <span class="icon">
+                <ion-icon name="person"></ion-icon>
+                </span>
+            <input type="text" name="username" placeholder="Nom d'utilisateur">
+            </div>
+            <div class="input-box">
+                <span class="icon">
+                    <ion-icon name="mail"></ion-icon>
+                </span>
+                <input type="email" required name="email" placeholder="Email">
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" required name="password" placeholder="Mot de passe">
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" required name="password2" placeholder="Confirmer le mot de passe">
+            </div>
+                <!-- <div class="remember-forget">
+                    <label><input type="checkbox">J'accepte les termes & les conditions</label>
+                </div> -->
+                <button type="submit" class="bnt">S'inscrire</button>
+                <div class="login-register">
+                    <p>Vous avez deja un compte?<a href="{% url 'connexion_etudiant' %}">connexion</a>
+                    </p>
+                </div>
+        </form>
+
+{% endblock %}    

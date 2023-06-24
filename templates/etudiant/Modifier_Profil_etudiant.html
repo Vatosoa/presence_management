@@ -1,0 +1,36 @@
+{% extends 'etudiant/base_profil_etudiant.html' %}
+{% load static %}
+{% block student_image %}
+     <img src="{{ student.image_etudiant.url }}" alt="profileImg">
+{% endblock %}
+
+{% block space %} - Modifier le Profil : {{student.user.username}}{% endblock %}
+{% block content %}      
+     <form action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="username">Nom de l'utilisateur</label>
+      <input type="text" name="username" id="username" value="{{student.user.username}}">
+
+      <label for="nom_etudiant">Nom de l'étudiant</label>
+      <input type="text" name="nom_etudiant" id="nom_etudiant" value="{{ student.nom_etudiant }}">
+
+      <label for="prenom_etudiant">Prenom</label>
+      <input type="text" name="prenom_etudiant" id="prenom_etudiant" value="{{student.prenom_etudiant}}">
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" value="{{student.user.email}}">
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" value="{{student.user.password}}">
+
+      <label for="image_etudiant">Image</label>
+      <img src="{{ student.image_etudiant}}" name="image_etudiant" id="image_etudiant">
+      <input type="file" name="image_etudiant">
+
+      <label for="location_etudiant">Location</label>
+      <input type="text" name="location_etudiant" id="location_etudiant" value="{{ student.location_etudiant}}">
+
+      <button type="submit">Enregistrer</button>
+
+     </form>
+{% endblock %}

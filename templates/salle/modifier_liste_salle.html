@@ -1,0 +1,17 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+{% block space %} - Gestion des salles{% endblock %}
+{% block content %}    
+      <h2>Modifier Salles</h2>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <label for="nom_salle">Nom: </label>
+        <input type="text" name="nom_salle" value="{{salle.nom_salle}}">
+        <label for="capacite">Capacité: </label>
+        <input type="number" name="capacite" value="{{ salle.capacite }}">
+        <label for="est_disponible">Disponibilité: </label>
+        <input type="checkbox" name="est_disponible" {% if salle.est_disponible %}checked{% endif %}>  
+        <br>
+        <input type="submit" value="Enregistrer">
+      </form>
+{% endblock %}

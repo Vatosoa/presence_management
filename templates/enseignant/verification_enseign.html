@@ -1,0 +1,27 @@
+{% extends 'enseignant/base_profil_enseignant.html' %}
+{% load static %}
+{% block space %} - Verification de presence pour mon module{% endblock %}
+{% block content %}
+<h2>Présence pour le module {{ module.nom_module }}</h2>
+
+<p>Enseignant : {{ enseignant.nom_enseignant }}</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Étudiant</th>
+      <th>Date de présence</th>
+      <th>Marque de présence</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for presence in presences %}
+    <tr>
+      <td>{{ etudiant.nom_etudiant }}</td>
+      <td>{{ presence.date_de_presence }}</td>
+      <td>{{ presence.marque_presence }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>    
+{% endblock %}

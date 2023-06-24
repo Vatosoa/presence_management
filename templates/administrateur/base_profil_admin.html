@@ -1,0 +1,124 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Menu déroulant de la barre latérale | CodingLab </title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" >
+
+    <link rel="stylesheet" href="{% static 'css/Profil_Admin.css' %}">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <!-- Autres fichiers CSS -->
+  <link rel="stylesheet" href="{% static 'css/Profil_Admin.css' %}">
+  <!-- Boxicons CDN Link -->
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar close">
+    <div class="logo-details">
+ 
+{%  block image %} {% endblock %}         
+<span class="logo_name">Univ_Alger1</span>
+      <!-- <span class="logo_name">E-learning</span> -->
+      
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="{% url 'profile_admin' %}">
+          <i class='bx bx-user-circle'></i>
+          <span class="link_name">Profil</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'profile_admin' %}">Profil</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="{% url 'tableau_de_bord_admin' %}">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Tableau de Bord</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'tableau_de_bord_admin' %}">Tableau de Bord</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="Gestionexam_admin.html">
+            <i class='bx bx-task'></i>
+            <span class="link_name">Gestions des Examens</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow'></i>
+        </div>
+        <ul class="sub-menu ">
+          <li><a class="link_name " href="Gestionexam_admin.html">Gestions des Examens</a>
+          </li>
+          <li><a href="Gestionexam_admin.html">Verifier le taux de présence </a></li>
+          <ul>
+          <li>Taux par salle</li>
+          <li>Taux par examen</li>
+          </ul>
+          <li><a href="Gestionexam_admin.html">Verifier le taux d'absence</a></li>
+          <ol>Taux par salle</ol>
+          <ol>Taux par examen</ol>
+        </ul>
+      </li>
+     
+      <li>
+        <a href="{% url 'liste_salle' %}">
+          <i class='bx bx-task'></i>
+          <span class="link_name">Gestion des Salles</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'liste_salle' %}">Gestion des Salles</a></li>
+        </ul>
+      </li>
+     
+      <li>
+        <a href="{% url 'gestion_utilisateur_admin' %}">
+          <i class='bx bx-task'></i>
+          <span class="link_name">Gestions des Utilsateurs</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'gestion_utilisateur_admin' %}">Gestions des Utilsateurs</a></li>
+        </ul>
+      </li>
+      
+    
+      <li>
+    <div class="profile-details">
+      <div class="profile-content">
+        <a href="{% url 'logout' %}"><img src="{% static 'image/vr.png' %}" alt="profileImg"></a>
+      </div>
+      <div class="name-job">
+        <div class="profile_name"><a href="{% url 'logout' %}">Déconnexion</a></div>
+        <div class="job">Admin</div>
+      </div>
+      <i class='bx bx-log-out' ><a href="{% url 'logout' %}"></a></i>
+    </div>
+  </li>
+</ul>
+
+
+  </div>
+
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">{% block space %} {% endblock %}</span>
+    </div>
+
+    <div class="home-content">
+
+{% block content %} {% endblock %}
+
+    </div>
+    
+  </section>
+  <script src="{% static 'js/script2.js' %}"></script>
+{% block script %} {% endblock %}
+</body>
+</html>

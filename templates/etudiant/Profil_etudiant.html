@@ -1,0 +1,84 @@
+{% extends 'etudiant/base_profil_etudiant.html' %}
+{% load static %}
+{% block space %} - Space Etudiant : {{student.user.username}} {% endblock %}
+{% block student_image %}
+     <img src="{{ student.image_etudiant.url }}" alt="profileImg">
+{% endblock %}
+{% block content %}
+<style>
+  .table td, .table th {
+  background-color: transparent;
+    border: 1px solid black;
+  }
+    .button-container {
+  margin-top: 20px;
+}
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container .btn {
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: blue;
+  color: white;
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+}
+
+
+
+</style>
+    <div class="table-container">
+      <div class="table-responsive">
+        <table class="table table-bordered" style="background-color: transparent;">
+          <tbody>
+            <tr>
+                <th scope="row">Nom d'utilisateur</th>
+                <td id="username" name="username">{{student.user.username}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Nom de l'étudiant</th>
+                <td id="nom_etudiant" name="nom_etudiant">{{student.nom_etudiant}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Email</th>
+                <td id="email" name="email">{{student.user.email}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Password</th>
+              <!-- <td id="password" name="password">{{student.user.password}}</td> -->
+              <td id="password" name="password"><input type="password" value="{{student.user.password}}" readonly></td>              
+
+            </tr>
+            <tr>
+              <th scope="row">Prenom</th>
+              <td id="prenom_etudiant" name="prenom_etudiant">{{student.prenom_etudiant}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Image</th>
+              <td id="image_etudiant" name="image_etudiant">
+                <img src="{{ student.image_etudiant.url }}" style="height: 50px; width: 50px;border-radius: 10px;" alt="img de l'étudiant">
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Location</th>
+              <td id="location_etudiant" name="location_etudiant">{{student.location_etudiant}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="button-container">
+        <a class="btn btn-primary" href="{% url 'modifier_profile_etudiant' user.id %}">Modifier</a>
+        <a class="btn btn-danger" href="{% url 'supprimer_profile_etudiant' user.id %}">Supprimer</a>
+      </div>
+    </div>  
+      {% endblock %}

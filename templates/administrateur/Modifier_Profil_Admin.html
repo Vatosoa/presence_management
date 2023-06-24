@@ -1,0 +1,38 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+{% block space %} - Modifier le Profil : {{admin.user.username}} {% endblock %}
+{% block content%}      
+     <form action="" method="POST">
+      {% csrf_token %}
+      <label for="username">Nom de l'utilisateur</label>
+      <input type="text" name="username" id="username" value="{{admin.user.username}}">
+
+      <label for="nom_admin">Nom de l'administration</label>
+      <input type="text" name="nom_admin" id="nom_admin" value="{{ admin.nom_admin }}">
+
+      <label for="prenom_admin">Prenom</label>
+      <input type="text" name="prenom_admin" id="prenom_admin" value="{{admin.prenom_admin}}">
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" value="{{admin.user.email}}">
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" value="{{admin.user.password}}">
+
+      <label for="image_admin">Image</label>
+      <img src="{{ admin.image_admin }}" name="image_admin" id="image_admin">
+      <input type="file" name="image_admin">
+
+      <label for="location_admin">Location</label>
+      <input type="text" name="location_admin" id="location_admin" value="{{admin.location_admin}}">
+
+      <button type="submit">Enregistrer</button>
+
+     </form>
+
+
+
+    </div>
+    
+  </section>
+{% endblock %}

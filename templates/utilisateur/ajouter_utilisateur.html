@@ -1,0 +1,77 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+
+{% block space %} - Gestion des Utilisateurs{% endblock %}
+
+{% block content %}
+  <h2>Ajouter un utilisateur</h2>
+  <form action="{% url 'ajouter_utilisateur' %}" method="POST">
+    {% csrf_token %}
+    <label for="username">Nom d'utilisateur:</label>
+    <input type="text" name="username">
+    <br>
+    <label for="password">Mot de passe:</label>
+    <input type="password" name="password">
+    <br>
+    <label for="role">Rôle:</label>
+    <select name="role" id="role-select">
+      <option value="administrateur">Administrateur</option>
+      <option value="enseignant">Enseignant</option>
+      <option value="etudiant">Etudiant</option>
+    </select>
+<!-- 
+    <div id="etudiant-fields" class="role-fields" style="display: none;">
+      <label for="nom_groupe">Groupe:</label>
+      <select id="nom_groupe" name="nom_groupe" required> -->
+        <!-- Les options de groupe seront ajoutées dynamiquement -->
+        {% for groupe in groupe %}
+        <!-- <option value="{{ groupe.nom_groupe }}">{{ groupe.nom_groupe }}</option> -->
+        {% endfor %}
+      <!-- </select>
+    </div>
+
+    <div id="enseignant-fields" class="role-fields" style="display: none;">
+      <label for="grade_enseignant">Grade:</label>
+      <input type="text" id="grade_enseignant" name="grade_enseignant" required>
+
+      <label for="nom_module">Module:</label>
+      <select id="nom_module" name="nom_module" required> -->
+        <!-- Les options de module seront ajoutées dynamiquement -->
+        {% for module in module %}
+          <!-- <option value="{{module.id_module}}">{{module.nom_module}}</option> -->
+        {% endfor %}
+      <!-- </select>
+    </div> -->
+
+    <br>
+      {{ form.non_field_errors }}
+<br>
+    <input type="submit" value="Ajouter">
+  </form>
+{% endblock %}
+
+{% block script %}
+<!-- <script>
+  // Récupérer les éléments du formulaire
+  const roleSelect = document.getElementById('role-select');
+  const etudiantFields = document.getElementById('etudiant-fields');
+  const enseignantFields = document.getElementById('enseignant-fields');
+
+  // Écouter les changements de sélection du rôle
+  roleSelect.addEventListener('change', function() {
+    const selectedRole = roleSelect.value;
+
+    // Afficher/cacher les champs en fonction du rôle sélectionné
+    if (selectedRole === 'etudiant') {
+      etudiantFields.style.display = 'block';
+      enseignantFields.style.display = 'none';
+    } else if (selectedRole === 'enseignant') {
+      etudiantFields.style.display = 'none';
+      enseignantFields.style.display = 'block';
+    } else {
+      etudiantFields.style.display = 'none';
+      enseignantFields.style.display = 'none';
+    }
+  });
+</script> -->
+{% endblock %}

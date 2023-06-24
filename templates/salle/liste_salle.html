@@ -1,0 +1,97 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+
+{% block space %} - Gestion des salles {% endblock %}
+{% block content %}
+<style>
+  .table th, .table td {
+  background-color: transparent;
+    border: 1px solid black;
+  }
+
+    .button-container {
+  margin-top: 20px;
+}
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container .btn {
+  margin-right: 10px;
+  margin-top: 20px;
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+
+.btn-primary {
+  background-color: blue;
+  color: white;
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+}
+
+
+  .table-container {
+    max-height: 300px; /* Adjust the desired height for the table */
+    overflow-y: auto; /* Enable vertical scroll */
+  }
+
+  .table {
+    margin-bottom: 0; /* Remove bottom margin to prevent double margin */
+  }
+</style>
+
+
+
+      <div >
+<h2>Liste des salles</h2>
+<br>
+<div class="button-container">
+  <a href="{% url 'ajouter_salle' %}" class="btn btn-primary">Ajouter</a>
+</div>
+<div class="table-container">    
+<table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Nom de salle</th>
+            <th>Capacité</th>
+            <th>Disponibilité</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for salle in salles %}
+          <tr>
+            <td name="nom_salle" id="nom_salle">{{salle.nom_salle}}</td>
+            <td name="capacite" id="capacite">{{salle.capacite}}</td>
+            <td name="est_disponible" id="est_disponible">
+                {% if salle.est_disponible %}
+                    <span style="color: green;">&#x2713;</span> <!-- Coche verte -->
+                {% else %}
+                    <span style="color: red;">&#x2717;</span> <!-- Croix rouge -->
+                {% endif %}
+            <td>
+              <a class="btn btn-warning" href="{% url 'modifier_liste_salle' salle.id_salle %}">Modifier</a>
+              <a class="btn btn-danger" href="{% url 'supprimer_salle' salle.id_salle %}">Supprimer</a>
+              <!-- <a href="">Approuver</a> -->
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="9">Aucune salle trouvé</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>
+    </div>     
+{% endblock %}
+

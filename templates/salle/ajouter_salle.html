@@ -1,0 +1,21 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+
+{% block space %} - Gestion des salles{% endblock %}
+
+{% block content %}
+  <h2>Ajouter une salle</h2>
+  <form action="{% url 'ajouter_salle' %}" method="POST">
+    {% csrf_token %}
+    <label for="nom_salle">Nom de la salle:</label>
+    <input type="text" name="nom_salle">
+    <br>
+    <label for="capacite">Capacité:</label>
+    <input type="number" name="capacite">
+    <br>
+    <label for="est_disponible">Disponible:</label>
+    <input type="checkbox" name="est_disponible">
+    <br>
+    <input type="submit" value="Ajouter">
+  </form>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Menu déroulant de la barre latérale | CodingLab </title>
+    <link rel="stylesheet" href="{% static 'css/Profil_Admin.css' %}">
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar close">
+    <div class="logo-details">
+ 
+     <img src="{% static 'image/vr.png' %}" alt="profileImg">
+      <span class="logo_name">Univ_Alger1</span>
+      <!-- <span class="logo_name">E-learning</span> -->
+      
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="{% url 'profile_enseignant' %}">
+          <i class='bx bx-user-circle'></i>
+          <span class="link_name">Profil</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'profile_enseignant' %}">Profil</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="{% url 'tableau_de_bord_enseignant' %}">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Tableau de Bord</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'tableau_de_bord_enseignant' %}">Tableau de Bord</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="{% url 'verification_presence_enseignant' %}">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Verification de presence</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'verification_presence_enseignant' %}">Verification de presence pour mon module</a></li>
+        </ul>
+      </li>
+      
+
+          <li>
+    <div class="profile-details">
+      <div class="profile-content">
+        <a href="{% url 'logout' %}"><img src="{% static 'image/vr.png' %}" alt="profileImg"></a>
+      </div>
+      <div class="name-job">
+        <div class="profile_name"><a href="{% url 'logout' %}">Déconnexion</a></div>
+        <div class="job">Enseignant</div>
+      </div>
+      <i class='bx bx-log-out' ><a href="{% url 'logout' %}"></a></i>
+    </div>
+  </li>
+</ul>
+
+
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">Space Enseignant{% block space %} {% endblock %}</span>
+    </div>
+
+        <div class="home-content">
+{% block content %} {% endblock %}
+        </div>
+    
+  </section>
+
+  <script src="{% static 'js/script2.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+
+{% block image %}
+     <img src="{{ admin.image_admin.url }}" alt="profileImg">
+{% endblock %}
+{% block content %}
+
+<h2>{{ module.nom_module }}</h2>
+<form method="POST">
+  {% csrf_token %}
+  {% for etudiant in etudiants %}
+    <label for="etudiant_{{ etudiant.id }}">
+      {{ etudiant.nom_etudiant }} {{ etudiant.prenom_etudiant }}
+      <input type="checkbox" name="etudiant_{{ etudiant.id }}">
+    </label>
+    <br>
+  {% endfor %}
+  <input type="submit" value="Enregistrer">
+</form>
+
+{% endblock %}

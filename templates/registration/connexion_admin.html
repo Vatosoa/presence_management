@@ -1,0 +1,44 @@
+{% extends 'registration/base_connexion.html' %}
+{% load static %}
+
+{% block nav %}<a href="{% url 'inscription_admin' %}"><!--<button class="btnLogin-popup">S'inscrire</button>--></a>{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+        <div class="from-box login">
+         <h2>S'authentifier</h2>
+         <div>
+            <style>
+                h5{
+                    color: red;
+                }
+            </style>
+            {% for message in messages %}
+            <h5>{{message}}</h5>
+            {% endfor %}
+        </div>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="input-box">
+            <span class="icon"><ion-icon name="mail"></ion-icon></span>
+            <input type="text" name="username" required>
+            <label>Nom d'utilisateur</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" name="password" required>
+                <label>Mot de passe</label>
+                </div>
+                <!-- <div class="remember-forget">
+                    <label><input type="checkbox">Se souvenir</label>
+                    <a href="#">Mot de passe oublier?</a>
+                </div> -->
+                <button type="submit" class="bnt">connexion</button>
+                <div class="login-register">
+                    <!-- <p>Je n'ai pas de compte!<a href="{% url 'inscription_admin' %}"> Creer</a> -->
+                    </p> 
+                </div>
+            </form>
+        </div>
+{% endblock %}        

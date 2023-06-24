@@ -1,0 +1,32 @@
+{% extends 'enseignant/base_profil_enseignant.html' %}
+{% load static %}
+{% block space %} - Modifier le Profil : {{teacher.user.username}}{% endblock %}
+{% block content %}      
+     <form action="" method="POST">
+      {% csrf_token %}
+      <label for="username">Nom de l'utilisateur</label>
+      <input type="text" name="username" id="username" value="{{teacher.user.username}}">
+
+      <label for="nom_enseignant">Nom de l'enseignant</label>
+      <input type="text" name="nom_enseignant" id="nom_enseignant" value="{{ teacher.nom_enseignant }}">
+
+      <label for="prenom_enseignant">Prenom</label>
+      <input type="text" name="prenom_enseignant" id="prenom_enseignant" value="{{teacher.prenom_enseignant}}">
+
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" value="{{teacher.user.email}}">
+
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" value="{{teacher.user.password}}">
+
+      <label for="image_enseignant">Image</label>
+      <img src="{{ teacher.image_enseignant}}" name="image_enseignant" id="image_enseignant">
+      <input type="file" name="image_enseignant">
+
+      <label for="location_enseignant">Location</label>
+      <input type="text" name="location_enseignant" id="location_enseignant" value="{{teacher.location_enseignant}}">
+
+      <button type="submit">Enregistrer</button>
+
+     </form>
+{% endblock %}

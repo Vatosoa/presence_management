@@ -1,0 +1,37 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+{% block space %} - Gestions des Utilisateurs {% endblock %}
+{% block content %}
+  <h2>Modifier Utilisateur</h2>
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="nom_etudiant">Nom:</label>
+    <input type="text" name="nom_etudiant" value="{{ utilisateur.nom_etudiant }}">
+    
+    <label for="prenom_etudiant">Prenom:</label>
+    <input type="text" name="prenom_etudiant" value="{{ utilisateur.prenom_etudiant }}">
+    
+    <label for="location_etudiant">Location:</label>
+    <input type="text" name="location_etudiant" value="{{ utilisateur.location_etudiant }}">
+    
+    <label for="image_etudiant">Image:</label>
+    <input type="file" name="image_etudiant" value="{{ utilisateur.image_etudiant }}">
+
+    <label for="nom_groupe">Groupe:</label>
+    <select name="nom_groupe">
+      {% for groupe in groupes %}
+        <option id="nom_groupe" value="{{ groupe.id_groupe }}" {% if groupe.id_groupe == utilisateur.groupe.id_groupe %}selected{% endif %}>{{ groupe.nom_groupe }}</option>
+      {% endfor %}
+    </select>
+    
+    <label for="nom_section">Section:</label>
+    <select name="nom_section">
+      {% for section in sections %}
+        <option  id="nom_section" value="{{ section.id_section }}" {% if section.id_section == utilisateur.section.id_section %}selected{% endif %}>{{ section.nom_section }}</option>
+      {% endfor %}
+    </select>
+
+    <br>
+    <input type="submit" value="Enregistrer">
+  </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+
+{% block space %} - Gestion des Utilisateurs{% endblock %}
+
+{% block content %}
+  <h2>Importer des utilisateurs</h2>
+  <form action="{% url 'importer_utilisateur' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="file" name="file">
+  <input type="submit" value="Importer">
+</form>
+
+<br><br>
+{% if utilisateurs_importes %}
+  <h3>Utilisateurs importés :</h3>
+  <ul>
+    {% for utilisateur in utilisateurs_importes %}
+      <li>{{ utilisateur.username }}</li>
+    {% endfor %}
+  </ul>
+  {% else %} <p>Aucun utilisateur n'a été importé</p>
+{% endif %}
+
+  
+{% endblock %}

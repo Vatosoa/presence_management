@@ -1,0 +1,154 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+{% block space %} - Gestion des Utilisateurs{% endblock %}
+{% block content %}
+<style>
+  .table th, .table td {
+  background-color: transparent;
+    border: 1px solid black;
+  }
+
+    .button-container {
+  margin-top: 20px;
+}
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container .btn {
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: blue;
+  color: white;
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+}
+
+
+  .table-container {
+    max-height: 300px; /* Adjust the desired height for the table */
+    overflow-y: auto; /* Enable vertical scroll */
+  }
+
+  .table {
+    margin-bottom: 0; /* Remove bottom margin to prevent double margin */
+  }
+</style>
+
+      <h2>Utilisateurs : Etudiant</h2>
+      <br>  
+      <a href="{% url 'ajouter_utilisateur' %}" class="btn btn-primary">Ajouter</a>
+
+      <!-- <form method="post" enctype="multipart/form-data" action="{% url 'import_students' %}">
+  {% csrf_token %}
+  <input type="file" name="file" accept=".xlsx, .csv">
+  <button type="submit">Importer</button>
+</form> -->
+
+
+      <div class="table-container">
+            <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Nom d'utilisateur</th>
+            <th>Nom étudiant</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Image</th>
+            <th>Password</th>
+            <th>Location</th>
+            <th>Groupe</th>
+            <th>Section</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for student in students %}
+          <tr>
+            <td>{{student.user.username}}</td>
+            <td name="nom_etudiant" id="nom_etudiant">{{student.nom_etudiant}}</td>
+            <td name="prenom_etudiant" id="prenom_etudiant">{{student.prenom_etudiant}}</td>
+            <td>{{student.user.email}}</td>
+            <td>
+              {% if student.image_etudiant %}
+            <img src="{{ student.image_etudiant.url }}" name="image_etudiant" id="image_etudiant" style="height: 50px; width: 50px; border-radius: 10px;" alt="img de l'étudiant">
+          {% else %}
+            Pas d'image
+          {% endif %}
+            </td>
+            <td id="password" name="password">
+                <input type="password" value="{{student.user.password}}" readonly>
+            </td> 
+            <td name="location_etudiant" id="location_etudiant">{{student.location_etudiant}}</td>
+            <td name="nom_groupe" id="nom_groupe" >{{student.groupe.nom_groupe}}</td>
+            <td name="nom_section" id="nom_section">{{student.section.nom_section}}</td>
+            <td>
+              <a class="btn btn-warning" href="{% url 'modifier_utilisateur_etudiant' student.id %}">Modifier</a>
+              <a class="btn btn-danger" href="{% url 'supprimer_utilisateur_etudiant' student.id %}">Supprimer</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="9">Aucun étudiant trouvé</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>        
+      </div>
+
+      <h2>Utilisateurs: Enseignant</h2>
+<div class="table-container">
+      <div class="table-responsive">
+      <table class="table table-bordered">
+        <tr>
+            <th>Nom d'utilisateur</th>
+            <th>Nom Enseignant</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Image</th>
+            <th>Password</th>
+            <th>Location</th>
+            <th>Module</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for teacher in teachers %}
+          <tr>
+            <td>{{teacher.user.username}}</td>
+            <td name="nom_enseignant" id="nom_enseignant">{{teacher.nom_enseignant}}</td>
+            <td name="prenom_enseignant" id="prenom_enseignant">{{teacher.prenom_enseignant}}</td>
+            <td>{{teacher.user.email}}</td>
+            <td>
+                <img src="{{ teacher.image_enseignant.url }}" style="height: 50px; width: 50px;border-radius: 10px;" alt="img de l'enseignant">
+            </td>
+            <td id="password" name="password">
+                <input type="password" value="{{teacher.user.password}}" readonly>
+            </td>              
+            <td name="location_enseignant" id="location_enseignant">{{teacher.location_enseignant}}</td>
+            <td name="nom_module" id="nom_module">{{teacher.module.nom_module}}</td>
+            <td>
+              <a class="btn btn-warning" href="{% url 'modifier_utilisateur_enseignant' teacher.id %}">Modifier</a>
+              <a class="btn btn-danger" href="{% url 'supprimer_utilisateur_enseignant' teacher.id %}">Supprimer</a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="9">Aucun enseignant trouvé</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</div>      
+</div>
+{% endblock %}

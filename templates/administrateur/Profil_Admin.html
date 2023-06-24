@@ -1,0 +1,84 @@
+{% extends 'administrateur/base_profil_admin.html' %}
+{% load static %}
+
+{% block image %}
+     <img src="{{ admin.image_admin.url }}" alt="profileImg">
+{% endblock %}
+{% block content %}
+
+<style>
+  .table tr, .table th, .table td {
+  background-color: transparent;
+    border: 1px solid black;
+  }
+
+    .button-container {
+  margin-top: 20px;
+}
+.table-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container .btn {
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background-color: blue;
+  color: white;
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+}
+
+
+
+</style>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+                <th scope="row">Nom d'utilisateur</th>
+                <td id="username" name="username">{{admin.user.username}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Nom de l'administrateur</th>
+                <td id="nom_admin" name="username">{{admin.nom_admin}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Email</th>
+                <td id="email" name="email">{{admin.user.email}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Password</th>
+              <td id="password" name="password"><input type="password" value="{{admin.user.password}}" readonly></td>              
+            </tr>
+            <tr>
+              <th scope="row">Prenom</th>
+              <td id="prenom_admin" name="prenom_admin">{{admin.prenom_admin}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Image</th>
+            <td scope = "row" id="image_admin" name="image_admin">
+                <img src="{{ admin.image_admin.url }}" style="height: 50px; width: 50px;border-radius: 10px;" alt="img de l'admin">
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Location</th>
+              <td id="location_admin" name="location_admin">{{admin.location_admin}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="button-container">
+      <a class="btn btn-warning" href="{% url 'modifier_profile_admin' user.id %}">Modifier</a>
+      <a class="btn btn-danger" href="{% url 'supprimer_profile_admin' user.id %}">Supprimer</a>
+      </div>
+
+
+{% endblock %}
